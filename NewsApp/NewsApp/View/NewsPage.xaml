@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsApp.View.NewsPage"
+             xmlns:viewmodel="clr-namespace:NewsApp.ViewModel"
+             x:DataType="viewmodel:NewsViewModel"
+             xmlns:model="clr-namespace:NewsApp.Model">
+
+    <CollectionView Margin="10"
+                    ItemsSource="{Binding NewsCollection}"
+                    SelectedItem="{Binding SelectedNews}"
+                    SelectionChangedCommand="{Binding GoToDetailsCommand}"
+                    SelectionMode="Single">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="20"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:News">
+                <Frame Padding="5"
+                       BorderColor="LightGray"
+                       CornerRadius="0">
+                    <VerticalStackLayout>
+                        <Image HeightRequest="200"
+                               Aspect="AspectFill"
+                               Source="{Binding ImageUrl}"/>
+                        <Label FontSize="Medium"
+                               Text="{Binding Title}"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
